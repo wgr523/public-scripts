@@ -97,7 +97,7 @@ scan() {
       fi
       local args=(); [ -n "$base" ] && args=(--no-merged="$base")
 
-      git -C "$repo" for-each-ref "${args[@]}" --format="$fmt" "refs/remotes/$r" |
+      git -C "$repo" for-each-ref ${args[@]+"${args[@]}"} --format="$fmt" "refs/remotes/$r" |
       awk -F'\t' -v OFS='\t' -v me="<$me>" -v since="$since" '
         $1 >= since && $3 == "" && (me == "<>" || tolower($2) == tolower(me)) {
           print $1, (($6 ~ /^[Ww][Ii][Pp]/) ? "●" : " "), $4, $5, $6 }' |
