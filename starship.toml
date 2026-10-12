@@ -1,0 +1,52 @@
+format = """
+$username$hostname$directory$git_branch$git_status$cmd_duration$fill$time
+$character"""
+
+[fill]
+symbol = " "
+
+[character]
+success_symbol = "[❯](bold green)"
+error_symbol = "[❯](bold red)"
+
+[directory]
+truncation_length = 3
+truncate_to_repo = true
+
+[git_branch]
+format = "[$symbol$branch]($style) "
+
+[git_status]
+format = "([$all_status$ahead_behind]())"
+conflicted = "[~${count} ](fg:196)"
+ahead     = "[⇡${count} ](fg:76)"
+behind    = "[⇣${count} ](fg:76)"
+diverged  = "[⇣${behind_count}⇡${ahead_count} ](fg:76)"
+untracked = "[?${count} ](fg:39)"
+stashed   = "[\\$${count} ](fg:39)"
+modified  = "[!${count} ](fg:178)"
+staged    = "[*${count} ](fg:76)"
+renamed   = "[»${count} ](fg:178)"
+deleted   = "[✘${count} ](fg:196)"
+up_to_date = ""
+
+[username]
+format = "[$user]($style) "
+style_user = "bold yellow"
+style_root = "bold red"
+
+[hostname]
+ssh_only = true
+format = "[$ssh_symbol$hostname]($style) "
+style = "bold green"
+
+[time]
+disabled = false
+format = "[🕐 $time]($style) "
+time_format = "%m/%d %H:%M:%S"
+style = "bold cyan"
+
+[cmd_duration]
+min_time = 1_000
+format = "[⏱ $duration]($style) "
+style = "dimmed yellow"
