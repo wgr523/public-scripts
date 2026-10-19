@@ -98,6 +98,8 @@ disp_name() {
 remote_base() {  # $1=repo $2=remote
   local b c
   b=$(git -C "$1" symbolic-ref -q --short "refs/remotes/$2/HEAD")
+  # HEAD 指针可能已过期（如默认分支从 master 改名为 main 后被 prune），此时忽略它
+  [ -n "$b" ] && ! git -C "$1" rev-parse -q --verify "refs/remotes/$b" >/dev/null && b=""
   if [ -z "$b" ]; then
     for c in main master; do
       git -C "$1" rev-parse -q --verify "refs/remotes/$2/$c" >/dev/null && { b="$2/$c"; break; }
