@@ -1,4 +1,4 @@
-# wip-status
+# public scripts
 
 - index.html: for github pages index, used for recording commands
-- xxx.sh: for github pages' actual script, access at `/xxx.sh`
+- xxx.sh/py/etc.: for github pages' actual script, access at `/filename`
